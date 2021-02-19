@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "27606a27-d19f-4af5-9878-3d19a8a17c2c",
+		"name": "Nest-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"tr.rodrigo@gmail.com\",\n\t\"name\":\"Tarcio Rodrigo\",\n\t\"password\":\"123456\",\n\t\"passwordConfirmation\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User SignUp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"trodrigo@serel.com.br\",\n\t\"name\":\"T.Rodrigo\",\n\t\"password\":\"link@123\",\n\t\"passwordConfirmation\":\"link@123\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"tr.rodrigo@gmail.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODJkMzkyLTZmN2ItNDk0OC04MjMzLTIyNTJiNzg0ZDkzYSIsImlhdCI6MTYxMzc1OTQyMSwiZXhwIjoxNjEzNzc3NDIxfQ.TRy1lP7S-vbEmBl6vwVC4q1yf11SHvQc5z8WcJlz3FM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Minininho\",\n\t\"email\":\"trodrigo@serel.com.br\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/users/aa6c2191-a795-4d2d-8d54-4dfcb4853eaa",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"aa6c2191-a795-4d2d-8d54-4dfcb4853eaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODJkMzkyLTZmN2ItNDk0OC04MjMzLTIyNTJiNzg0ZDkzYSIsImlhdCI6MTYxMzc1OTQyMSwiZXhwIjoxNjEzNzc3NDIxfQ.TRy1lP7S-vbEmBl6vwVC4q1yf11SHvQc5z8WcJlz3FM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"trodrigo@serel.com.br\",\n\t\"password\":\"link@123\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/users/b58fa89a-ac1c-48c7-afd1-473f6f18cdc7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"b58fa89a-ac1c-48c7-afd1-473f6f18cdc7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODJkMzkyLTZmN2ItNDk0OC04MjMzLTIyNTJiNzg0ZDkzYSIsImlhdCI6MTYxMzc1OTQyMSwiZXhwIjoxNjEzNzc3NDIxfQ.TRy1lP7S-vbEmBl6vwVC4q1yf11SHvQc5z8WcJlz3FM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODJkMzkyLTZmN2ItNDk0OC04MjMzLTIyNTJiNzg0ZDkzYSIsImlhdCI6MTYxMzc1OTQyMSwiZXhwIjoxNjEzNzc3NDIxfQ.TRy1lP7S-vbEmBl6vwVC4q1yf11SHvQc5z8WcJlz3FM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/users/aa6c2191-a795-4d2d-8d54-4dfcb4853eaa",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"aa6c2191-a795-4d2d-8d54-4dfcb4853eaa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
