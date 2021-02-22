@@ -6,6 +6,7 @@ import { User } from '../users/user.entity';
 import { UserRole } from '../users/users-roles.enum';
 import { CredentialsDto } from 'src/users/dto/credentials.dto';
 import { JwtService } from '@nestjs/jwt';
+import { Role } from './role.decorator';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,13 @@ export class AuthService {
     if (createUserDto.password != createUserDto.passwordConfirmation) {
       throw new UnprocessableEntityException('As senhas não conferem');
     } else {
-      return await this.userRepository.createUser(createUserDto, UserRole.USER);
+      //return await this.userRepository.createUser(createUserDto, UserRole.USER);
+      const user = await this.userRepository.createUser(
+        createUserDto, 
+        UserRole.USER,
+      );
+
+      return user;
     }
   }
 
