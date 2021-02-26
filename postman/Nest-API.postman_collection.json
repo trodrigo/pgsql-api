@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "27606a27-d19f-4af5-9878-3d19a8a17c2c",
+		"_postman_id": "fa60ebf9-0bcb-48ac-8c99-c9de48071dc9",
 		"name": "Nest-API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -38,6 +38,16 @@
 				{
 					"name": "Create User SignUp",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyNDZiNzRhLWJkMjQtNGI0Yi04ODBkLTE1YzdjNjBmNmRmZCIsImlhdCI6MTYxNDAzOTk1NSwiZXhwIjoxNjE0MDU3OTU1fQ.u6Smss2jix0iQQF88oEwbyk3DBxoA4rmveI9CW4bRyk",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -47,7 +57,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"trodrigo@serel.com.br\",\n\t\"name\":\"T.Rodrigo\",\n\t\"password\":\"link@123\",\n\t\"passwordConfirmation\":\"link@123\"\n}"
+							"raw": "{\n\t\"email\":\"geovania.agostinho15gmail.com\",\n\t\"name\":\"Geovania Agostinho\",\n\t\"password\":\"123456\",\n\t\"passwordConfirmation\":\"123456\"\n}"
 						},
 						"url": {
 							"raw": "localhost:3000/auth/signup",
@@ -75,7 +85,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"tr.rodrigo@gmail.com\",\n\t\"password\":\"123456\"\n}"
+							"raw": "{\n\t\"email\":\"tr.rodrigo@gmail.com\",\n\t\"password\":\"Link@123\"\n}"
 						},
 						"url": {
 							"raw": "localhost:3000/auth/signin",
@@ -86,6 +96,43 @@
 							"path": [
 								"auth",
 								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Solicita Recuperar Senha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyNDZiNzRhLWJkMjQtNGI0Yi04ODBkLTE1YzdjNjBmNmRmZCIsImlhdCI6MTYxNDAzOTk1NSwiZXhwIjoxNjE0MDU3OTU1fQ.u6Smss2jix0iQQF88oEwbyk3DBxoA4rmveI9CW4bRyk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"tr.rodrigo@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "localhost/auth/send-recover-email",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"auth",
+								"send-recover-email"
 							]
 						}
 					},
@@ -124,6 +171,154 @@
 							"path": [
 								"users",
 								"aa6c2191-a795-4d2d-8d54-4dfcb4853eaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email Confirmation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODJkMzkyLTZmN2ItNDk0OC04MjMzLTIyNTJiNzg0ZDkzYSIsImlhdCI6MTYxMzc1OTQyMSwiZXhwIjoxNjEzNzc3NDIxfQ.TRy1lP7S-vbEmBl6vwVC4q1yf11SHvQc5z8WcJlz3FM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Minininho\",\n\t\"email\":\"trodrigo@serel.com.br\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/auth/:token",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								":token"
+							],
+							"variable": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar Senha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyNDZiNzRhLWJkMjQtNGI0Yi04ODBkLTE1YzdjNjBmNmRmZCIsImlhdCI6MTYxNDA1MTE2MCwiZXhwIjoxNjE0MDY5MTYwfQ.d5WqQC7i-sh1s3jTPu0zaFZ4XzZOPHtYpK7RWfLq3eE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\":\"Link@123\",\n\t\"passwordConfirmation\":\"Link@123\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/auth/reset-password/:token",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"reset-password",
+								":token"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "token",
+									"value": "b9e2e2e2e4974c7f7ac8c4d0bf0e16cdb49373a919a0f0b7ab7ac3a463b571d3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Altera Senha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUyNDZiNzRhLWJkMjQtNGI0Yi04ODBkLTE1YzdjNjBmNmRmZCIsImlhdCI6MTYxNDA1MTE2MCwiZXhwIjoxNjE0MDY5MTYwfQ.d5WqQC7i-sh1s3jTPu0zaFZ4XzZOPHtYpK7RWfLq3eE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\":\"Link@123\",\n\t\"passwordConfirmation\":\"Link@123\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/auth/:id/change-password",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								":id",
+								"change-password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "89c4e958-75c5-4a7b-9f97-7a36da15b644"
+								}
 							]
 						}
 					},
@@ -178,7 +373,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODJkMzkyLTZmN2ItNDk0OC04MjMzLTIyNTJiNzg0ZDkzYSIsImlhdCI6MTYxMzc1OTQyMSwiZXhwIjoxNjEzNzc3NDIxfQ.TRy1lP7S-vbEmBl6vwVC4q1yf11SHvQc5z8WcJlz3FM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg5YzRlOTU4LTc1YzUtNGE3Yi05Zjk3LTdhMzZkYTE1YjY0NCIsImlhdCI6MTYxMzg2NTE1NiwiZXhwIjoxNjEzODgzMTU2fQ.RejR1P2Vp_rz8JO2pehGn0g9M1EbQ2CDx8QLHnRRUHE",
 									"type": "string"
 								}
 							]
@@ -244,6 +439,76 @@
 							"path": [
 								"users",
 								"aa6c2191-a795-4d2d-8d54-4dfcb4853eaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1ODJkMzkyLTZmN2ItNDk0OC04MjMzLTIyNTJiNzg0ZDkzYSIsImlhdCI6MTYxNDM0NDAwMywiZXhwIjoxNjE0MzYyMDAzfQ.bpB83FrT2iyBpfplOGREcvnQHCHPCcHP_hYzqESPi80",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/users?name=Tarcio&email=tr.rodrigo&role=ADMIN&sort={\"name\":\"ASC\",\"email\":\"DESC\"}&page=1&limit=10&status=true",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Tarcio"
+								},
+								{
+									"key": "email",
+									"value": "tr.rodrigo"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN"
+								},
+								{
+									"key": "sort",
+									"value": "{\"name\":\"ASC\",\"email\":\"DESC\"}"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "status",
+									"value": "true"
+								}
 							]
 						}
 					},
