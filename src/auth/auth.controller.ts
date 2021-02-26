@@ -1,10 +1,12 @@
-import { Controller, Post, Body, ValidationPipe, Get, UseGuards, Req } from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe, Get, UseGuards, Req, Param, Patch, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { CredentialsDto } from 'src/users/dto/credentials.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from 'src/users/user.entity';
 import { GetUser } from './get-user.decorator';
+import { ChangePasswordDto } from './dto/change-password.dto';
+import { UserRole } from 'src/users/users-roles.enum';
 
 @Controller('auth')
 export class AuthController {
@@ -27,7 +29,55 @@ export class AuthController {
     return await this.authService.signIn(credentialsDto);
   }  
 
-  // @Get('/me')
+  @Patch(':token')
+  async confirmEmail(@Param('token') token: string) {
+    const user = await this.authService.confirmEmail(token);
+    return {
+      message: 'Email confirmado',
+    };
+  }  
+
+  @Post('/send-recover-email')
+  async sendRecoverPasswordEmail(
+    @Body('email') email: string,
+  ): Promise<{ message: string }> {
+    await this.authService.sendRecoverPasswordEmail(email);
+    return {
+      message: 'Foi enviado um email com instruções para resetar sua senha',
+    };
+  }
+
+  @Patch('/reset-password/:token')
+  async resetPassword(
+    @Param('token') token: string,
+    @Body(ValidationPipe) changePasswordDto: ChangePasswordDto,
+  ): Promise<{ message: string }> {
+    await this.authService.resetPassword(token, changePasswordDto);
+
+    return {
+      message: 'Senha alterada com sucesso',
+    };
+  }  
+
+  @Patch(':id/change-password')
+  @UseGuards(AuthGuard())
+  async changePassword(
+    @Param('id') id: string,
+    @Body(ValidationPipe) changePasswordDto: ChangePasswordDto,
+    @GetUser() user: User,
+  ) {
+    if (user.role !== UserRole.ADMIN && user.id.toString() !== id)
+      throw new UnauthorizedException(
+        'Você não tem permissão para realizar esta operação',
+      );
+ 
+    await this.authService.changePassword(id, changePasswordDto);
+    return {
+      message: 'Senha alterada',
+    };
+  }
+    
+ // @Get('/me')
   // @UseGuards(AuthGuard())
   // getMe(@Req() req): User {
   //   return req.user;
