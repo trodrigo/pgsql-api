@@ -17,6 +17,14 @@ export class UserRepository extends Repository<User> {
   async findUsers(
     queryDto: FindUsersQueryDto,
   ): Promise<{ users: User[]; total: number }> {
+    //const sort = {
+    //  name: "ASC",
+    //  email: "DESC"
+    //}
+    
+    //const sortString = JSON.stringify(sort);
+    //queryDto.sort = sortString;
+
     queryDto.status = queryDto.status === undefined ? true : queryDto.status;
     queryDto.page = queryDto.page < 1 ? 1 : queryDto.page;
     queryDto.limit = queryDto.limit > 100 ? 100 : queryDto.limit;
@@ -42,6 +50,7 @@ export class UserRepository extends Repository<User> {
     query.select(['user.name', 'user.email', 'user.role', 'user.status']);
 
     const [users, total] = await query.getManyAndCount();
+    console.log(queryDto.sort)
 
     return { users, total };
   }  
