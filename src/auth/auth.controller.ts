@@ -7,7 +7,9 @@ import { User } from 'src/users/user.entity';
 import { GetUser } from './get-user.decorator';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { UserRole } from 'src/users/users-roles.enum';
+import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiTags('Autharization')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -83,6 +85,7 @@ export class AuthController {
   //   return req.user;
   // }
 
+  @ApiBearerAuth()
   @Get('/me')
   @UseGuards(AuthGuard())
   getMe(@GetUser() user: User): User {

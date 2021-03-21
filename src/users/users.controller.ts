@@ -10,12 +10,15 @@ import { User } from './user.entity';
 import { UpdateUserDto } from './dto/update-users.dto';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { FindUsersQueryDto } from './dto/find-users-query.dto';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Users')
 @Controller('users')
 @UseGuards(AuthGuard(), RolesGuard)
 export class UsersController {
     constructor(private usersService: UsersService){}
 
+    @ApiResponse({ status: 201 })
     @Post()
     @Role(UserRole.ADMIN)
     async createAdminUser(
